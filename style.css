@@ -62,3 +62,8 @@ h1 span {
     display: inline-block;
     margin: 0 5px;
 }
+
+#counter #milliseconds {
+    display: inline-block;
+    width: 40px;
+}
