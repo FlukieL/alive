@@ -9,6 +9,16 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .container {
@@ -22,6 +32,23 @@ h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     color: #333;
+}
+
+h1 span {
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.8;
+    }
 }
 
 #counter {
