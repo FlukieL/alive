@@ -1,4 +1,12 @@
 const birthDate = new Date('1993-05-05T00:00:00');
+const headQuotes = [
+    "I can't believe I ate the whole thing",
+    "I'll try spinning that's a good trick",
+    "Bazinga!",
+    "I am using tilt controls!",
+    "Let's go bowling!",
+    "Why would you click me?"
+];
 
 function createYearMarkers() {
     const yearMarkersContainer = document.getElementById('year-markers');
@@ -72,6 +80,25 @@ function init() {
     updateCounter();
     setInterval(updateCounter, 1);
     animateProgressBar();
+    setupHeadClick();
+}
+
+function setupHeadClick() {
+    const head = document.getElementById('moving-head');
+    const bubble = document.getElementById('head-bubble');
+    let timeoutId;
+
+    head.addEventListener('click', () => {
+        const randomQuote = headQuotes[Math.floor(Math.random() * headQuotes.length)];
+        bubble.textContent = randomQuote;
+        bubble.classList.add('visible');
+
+        if (timeoutId) clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(() => {
+            bubble.classList.remove('visible');
+        }, 3000);
+    });
 }
 
 window.addEventListener('load', init);

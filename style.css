@@ -128,6 +128,7 @@ h1 span {
     height: 50px;
     position: relative;
     animation: headBob 2s infinite ease-in-out;
+    cursor: pointer;
 }
 
 .body {
@@ -264,7 +265,7 @@ h1 span {
     color: #333;
     transition: all 0.3s ease;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .bubble::after {
@@ -332,5 +333,41 @@ h1 span {
 
 .age-labels span:hover .left-bubble {
     transform: translateX(-50%) translateY(-10px);
+    animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.head-bubble {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 200px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    color: #333;
+    transition: all 0.3s ease;
+    top: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.head-bubble::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent white;
+}
+
+.head-bubble.visible {
+    visibility: visible;
+    opacity: 1;
     animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
