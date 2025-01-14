@@ -3,7 +3,7 @@ const birthDate = new Date('1993-05-05T00:00:00');
 function createYearMarkers() {
     const yearMarkersContainer = document.getElementById('year-markers');
     const totalYears = 109;
-    const interval = 10; // Show every 10 years
+    const interval = 10;
 
     for (let year = 0; year <= totalYears; year += interval) {
         const marker = document.createElement('div');
@@ -13,9 +13,6 @@ function createYearMarkers() {
         yearMarkersContainer.appendChild(marker);
     }
 }
-
-// Call this function when the page loads
-createYearMarkers();
 
 function updateCounter() {
     const now = new Date();
@@ -37,13 +34,44 @@ function updateCounter() {
     document.getElementById('seconds').textContent = seconds;
     document.getElementById('milliseconds').textContent = milliseconds;
 
-    // Update progress bar and stick figure
-    const progressBar = document.getElementById('age-progress');
-    const stickFigure = document.querySelector('.stick-figure');
-    const progressPercentage = (years / 109) * 100;
-    
-    progressBar.style.width = `${progressPercentage}%`;
-    stickFigure.style.left = `${progressPercentage}%`;
+    return years;
 }
 
-setInterval(updateCounter, 1);
+function animateProgressBar() {
+    const progressBar = document.getElementById('age-progress');
+    const stickFigure = document.querySelector('.stick-figure');
+    const targetYears = updateCounter();
+    const targetPercentage = (targetYears / 109) * 100;
+    let currentPercentage = 0;
+    
+    function easeOutCubic(x) {
+        return 1 - Math.pow(1 - x, 3);
+    }
+    
+    function animate() {
+        if (currentPercentage < targetPercentage) {
+            currentPercentage += (targetPercentage - currentPercentage) * 0.03;
+            
+            if (Math.abs(targetPercentage - currentPercentage) < 0.01) {
+                currentPercentage = targetPercentage;
+            }
+            
+            const easedPercentage = easeOutCubic(currentPercentage / targetPercentage) * targetPercentage;
+            progressBar.style.width = `${easedPercentage}%`;
+            stickFigure.style.left = `${easedPercentage}%`;
+            
+            requestAnimationFrame(animate);
+        }
+    }
+    
+    animate();
+}
+
+function init() {
+    createYearMarkers();
+    updateCounter();
+    setInterval(updateCounter, 1);
+    animateProgressBar();
+}
+
+window.addEventListener('load', init);
