@@ -6,6 +6,8 @@ const headQuotes = [
     "I am using tilt controls!",
     "Let's go bowling!",
     "I'm still alive eyyyya",
+    "My power level is beyond your comprehension",
+    "Unlock the achievements at my link site",
     "Why would you click me?"
 ];
 
