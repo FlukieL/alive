@@ -5,6 +5,7 @@ const headQuotes = [
     "Bazinga!",
     "I am using tilt controls!",
     "Let's go bowling!",
+    "I'm still alive eyyyya",
     "Why would you click me?"
 ];
 
