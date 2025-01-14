@@ -159,7 +159,7 @@ h1 span {
 .arm.right {
     left: 50%;
     transform-origin: left;
-    animation: rightArmSwing 2s infinite ease-in-out;
+    animation: leftArmSwing 2s infinite ease-in-out reverse;
 }
 
 .leg {
@@ -191,13 +191,13 @@ h1 span {
 }
 
 @keyframes leftArmSwing {
-    0%, 100% { transform: rotate(-30deg); }
-    50% { transform: rotate(30deg); }
+    0%, 100% { transform: rotate(30deg); }
+    50% { transform: rotate(-30deg); }
 }
 
 @keyframes rightArmSwing {
-    0%, 100% { transform: rotate(30deg); }
-    50% { transform: rotate(-30deg); }
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(30deg); }
 }
 
 @keyframes leftLegSwing {
