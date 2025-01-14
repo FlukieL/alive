@@ -1,5 +1,22 @@
 const birthDate = new Date('1993-05-05T00:00:00');
 
+function createYearMarkers() {
+    const yearMarkersContainer = document.getElementById('year-markers');
+    const totalYears = 109;
+    const interval = 10; // Show every 10 years
+
+    for (let year = 0; year <= totalYears; year += interval) {
+        const marker = document.createElement('div');
+        marker.className = 'year-marker';
+        marker.textContent = year;
+        marker.style.left = `${(year / totalYears) * 100}%`;
+        yearMarkersContainer.appendChild(marker);
+    }
+}
+
+// Call this function when the page loads
+createYearMarkers();
+
 function updateCounter() {
     const now = new Date();
     const diff = now - birthDate;
@@ -19,6 +36,14 @@ function updateCounter() {
     document.getElementById('minutes').textContent = minutes;
     document.getElementById('seconds').textContent = seconds;
     document.getElementById('milliseconds').textContent = milliseconds;
+
+    // Update progress bar and stick figure
+    const progressBar = document.getElementById('age-progress');
+    const stickFigure = document.querySelector('.stick-figure');
+    const progressPercentage = (years / 109) * 100;
+    
+    progressBar.style.width = `${progressPercentage}%`;
+    stickFigure.style.left = `${progressPercentage}%`;
 }
 
 setInterval(updateCounter, 1);

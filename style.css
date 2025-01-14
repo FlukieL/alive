@@ -67,3 +67,166 @@ h1 span {
     display: inline-block;
     width: 40px;
 }
+
+.progress-container {
+    margin-bottom: 40px;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.age-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.age-labels span {
+    color: #666;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.age-labels span::after {
+    content: 'years';
+    font-size: 0.8em;
+    color: #888;
+}
+
+.stick-figure {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    transform: translateX(-50%);
+    transition: left 0.3s ease;
+}
+
+.head {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    animation: headBob 2s infinite ease-in-out;
+}
+
+.body {
+    position: relative;
+    height: 80px;
+}
+
+.torso {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 40px;
+    background: #000;
+}
+
+.arm {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #000;
+    top: 15px;
+}
+
+.arm.left {
+    right: 50%;
+    transform-origin: right;
+    animation: leftArmSwing 2s infinite ease-in-out;
+}
+
+.arm.right {
+    left: 50%;
+    transform-origin: left;
+    animation: rightArmSwing 2s infinite ease-in-out;
+}
+
+.leg {
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: #000;
+    top: 40px;
+}
+
+.leg.left {
+    right: 50%;
+    transform-origin: right;
+    animation: leftLegSwing 2s infinite ease-in-out;
+}
+
+.leg.right {
+    left: 50%;
+    transform-origin: left;
+    animation: rightLegSwing 2s infinite ease-in-out;
+}
+
+@keyframes headBob {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes leftArmSwing {
+    0%, 100% { transform: rotate(-30deg); }
+    50% { transform: rotate(30deg); }
+}
+
+@keyframes rightArmSwing {
+    0%, 100% { transform: rotate(30deg); }
+    50% { transform: rotate(-30deg); }
+}
+
+@keyframes leftLegSwing {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+}
+
+@keyframes rightLegSwing {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(-20deg); }
+}
+
+.year-markers {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.year-marker {
+    position: absolute;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #666;
+}
+
+.year-marker::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    width: 1px;
+    height: 6px;
+    background-color: #666;
+}
