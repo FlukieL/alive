@@ -50,7 +50,7 @@ function animateProgressBar() {
     
     function animate() {
         if (currentPercentage < targetPercentage) {
-            currentPercentage += (targetPercentage - currentPercentage) * 0.03;
+            currentPercentage += (targetPercentage - currentPercentage) * 0.015;
             
             if (Math.abs(targetPercentage - currentPercentage) < 0.01) {
                 currentPercentage = targetPercentage;
