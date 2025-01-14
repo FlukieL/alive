@@ -3,13 +3,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #6d3275;
     color: #333;
     margin: 0;
     padding: 20px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
 }
 
 @keyframes fadeIn {
