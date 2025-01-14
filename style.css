@@ -167,18 +167,21 @@ h1 span {
     width: 30px;
     height: 2px;
     background: #000;
-    top: 40px;
+    top: 38px;
+    transform-origin: top;
 }
 
 .leg.left {
     right: 50%;
-    transform-origin: right;
+    transform: rotate(-45deg);
+    transform-origin: right top;
     animation: leftLegSwing 2s infinite ease-in-out;
 }
 
 .leg.right {
     left: 50%;
-    transform-origin: left;
+    transform: rotate(45deg);
+    transform-origin: left top;
     animation: rightLegSwing 2s infinite ease-in-out;
 }
 
@@ -198,13 +201,13 @@ h1 span {
 }
 
 @keyframes leftLegSwing {
-    0%, 100% { transform: rotate(-20deg); }
-    50% { transform: rotate(20deg); }
+    0%, 100% { transform: rotate(-60deg); }
+    50% { transform: rotate(-30deg); }
 }
 
 @keyframes rightLegSwing {
-    0%, 100% { transform: rotate(20deg); }
-    50% { transform: rotate(-20deg); }
+    0%, 100% { transform: rotate(60deg); }
+    50% { transform: rotate(30deg); }
 }
 
 .year-markers {
