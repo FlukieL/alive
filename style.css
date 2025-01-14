@@ -349,7 +349,7 @@ h1 span {
     line-height: 1.4;
     color: #333;
     transition: all 0.3s ease;
-    top: calc(100% + 20px);
+    top: calc(100% - 15px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
@@ -369,5 +369,29 @@ h1 span {
 .head-bubble.visible {
     visibility: visible;
     opacity: 1;
-    animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: 
+        bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        bubbleColorChange 3s linear infinite;
+}
+
+.head-bubble.visible::after {
+    animation: bubbleArrowColorChange 3s linear infinite;
+}
+
+@keyframes bubbleColorChange {
+    0%, 100% { background: white; }
+    16.67% { background: #ffe6e6; }
+    33.33% { background: #e6f2ff; }
+    50% { background: #e6ffe6; }
+    66.67% { background: #fff2e6; }
+    83.33% { background: #f2e6ff; }
+}
+
+@keyframes bubbleArrowColorChange {
+    0%, 100% { border-color: transparent transparent white; }
+    16.67% { border-color: transparent transparent #ffe6e6; }
+    33.33% { border-color: transparent transparent #e6f2ff; }
+    50% { border-color: transparent transparent #e6ffe6; }
+    66.67% { border-color: transparent transparent #fff2e6; }
+    83.33% { border-color: transparent transparent #f2e6ff; }
 }

@@ -87,10 +87,16 @@ function setupHeadClick() {
     const head = document.getElementById('moving-head');
     const bubble = document.getElementById('head-bubble');
     let timeoutId;
+    let lastQuoteIndex = -1;
 
     head.addEventListener('click', () => {
-        const randomQuote = headQuotes[Math.floor(Math.random() * headQuotes.length)];
-        bubble.textContent = randomQuote;
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * headQuotes.length);
+        } while (randomIndex === lastQuoteIndex && headQuotes.length > 1);
+        
+        lastQuoteIndex = randomIndex;
+        bubble.textContent = headQuotes[randomIndex];
         bubble.classList.add('visible');
 
         if (timeoutId) clearTimeout(timeoutId);
