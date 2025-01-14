@@ -1,6 +1,6 @@
 {
-  "name": "Luke Harper Age Counter",
-  "short_name": "Luke's Age",
+  "name": "Luke Harper Alive",
+  "short_name": "Luke Alive",
   "description": "A real-time counter showing how long Luke Harper has been alive",
   "start_url": "/",
   "display": "standalone",
