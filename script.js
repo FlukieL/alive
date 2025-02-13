@@ -57,19 +57,48 @@ const stickFigure = document.querySelector('.stick-figure');
 const head = document.getElementById('moving-head');
 const progressBar = document.getElementById('age-progress');
 
+const headImages = {
+    baby: document.getElementById('head-baby'),
+    young: document.getElementById('head-young'),
+    current: document.getElementById('head-current'),
+    old: document.getElementById('head-old')
+};
+
 function updateHeadImage(percentage) {
     requestAnimationFrame(() => {
         const currentAgePercentage = (updateCounter() / 109) * 100;
         
-        if (percentage <= 5) {
-            head.src = 'HeadNoBG2.png';
-        } else if (percentage < currentAgePercentage) {
-            head.src = 'HeadNoBGYoung.png';
-        } else if (percentage >= 60) {
-            head.src = 'HeadNoBGOld.png';
-        } else {
-            head.src = 'HeadNoBG.png';
-        }
+        // Baby image shows at the start with a small fade transition
+        const babyOpacity = percentage <= 2 ? 1 : 
+                           percentage <= 3 ? 1 - (percentage - 2) : 0;
+        
+        // Young image shows between baby and current age
+        const youngOpacity = percentage <= currentAgePercentage && percentage > 2
+            ? Math.max(0, Math.min(1, 
+                percentage <= 3 ? (percentage - 2) : // Quick fade in from baby
+                Math.min(
+                    1, // Full opacity for most of young period
+                    // Fade out approaching current age
+                    percentage < currentAgePercentage - 10 
+                        ? 1 
+                        : 1 - ((percentage - (currentAgePercentage - 10)) / 10)
+                )
+            ))
+            : 0;
+        
+        // Old image fades in gradually
+        const oldOpacity = percentage >= 60 
+            ? Math.max(0, Math.min(1, (percentage - 60) / 8))
+            : 0;
+        
+        // Current image only shows when not in transition zones
+        const currentOpacity = percentage > 3 && percentage < 60 && !youngOpacity && !oldOpacity ? 1 : 0;
+        
+        // Apply opacity values
+        headImages.baby.style.opacity = babyOpacity;
+        headImages.young.style.opacity = youngOpacity;
+        headImages.current.style.opacity = currentOpacity;
+        headImages.old.style.opacity = oldOpacity;
     });
 }
 
