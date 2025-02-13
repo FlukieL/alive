@@ -121,6 +121,14 @@ h1 span {
     left: 0;
     transform: translateX(-50%);
     transition: left 0.3s ease;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+.stick-figure:active {
+    cursor: grabbing;
 }
 
 .head {
@@ -128,7 +136,14 @@ h1 span {
     height: 50px;
     position: relative;
     animation: headBob 2s infinite ease-in-out;
-    cursor: pointer;
+    cursor: grab;
+    transition: content 0.3s ease;
+    -webkit-user-drag: none;
+}
+
+.head:active {
+    cursor: grabbing;
+    animation: none;
 }
 
 .body {
