@@ -172,8 +172,11 @@ function init() {
     animateProgressBar();
     setupHeadClick();
     
+    // Make both head and stick figure body draggable
     head.addEventListener('mousedown', handleDragStart);
     head.addEventListener('touchstart', handleDragStart, { passive: false });
+    stickFigure.addEventListener('mousedown', handleDragStart);
+    stickFigure.addEventListener('touchstart', handleDragStart, { passive: false });
 }
 
 function setupHeadClick() {
@@ -182,7 +185,10 @@ function setupHeadClick() {
     let timeoutId;
     let lastQuoteIndex = -1;
 
-    head.addEventListener('click', () => {
+    head.addEventListener('click', (e) => {
+        // Only show quote if it wasn't a drag
+        if (isDragging) return;
+        
         let randomIndex;
         do {
             randomIndex = Math.floor(Math.random() * headQuotes.length);

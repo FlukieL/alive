@@ -125,6 +125,7 @@ h1 span {
     -webkit-user-select: none;
     user-select: none;
     touch-action: none;
+    z-index: 1000;
 }
 
 .stick-figure:active {
@@ -149,6 +150,13 @@ h1 span {
 .body {
     position: relative;
     height: 80px;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.body:active {
+    cursor: grabbing;
 }
 
 .torso {
