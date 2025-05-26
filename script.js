@@ -31,7 +31,17 @@ function updateCounter() {
 
     const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
     const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+
+    // Calculate the date after subtracting the full years and months
+    let tempDate = new Date(birthDate);
+    tempDate.setFullYear(tempDate.getFullYear() + years);
+    tempDate.setMonth(tempDate.getMonth() + months);
+
+    // Calculate the difference in days between now and this tempDate
+    // This will give the remaining days more accurately
+    const daysDiff = now - tempDate;
+    const days = Math.floor(daysDiff / (1000 * 60 * 60 * 24));
+
     const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
     const minutes = Math.floor(diff / (1000 * 60)) % 60;
     const seconds = Math.floor(diff / 1000) % 60;
